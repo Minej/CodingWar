@@ -367,7 +367,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.find_friend:
-                Toast.makeText(this, "Find Friend", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, FindFriendActivity.class));
                 break;
 
             case R.id.chat:
