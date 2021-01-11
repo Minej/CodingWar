@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseRecyclerOptions<Comment> CommentOption;
     FirebaseRecyclerAdapter<Comment, CommentViewHolder> CommentAdapter;
 
-    /*alefimqwopergmfeomfepomrf*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -325,8 +323,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
         if (mUser == null) {
             SendToLoginActivity();
-        } else
-            {
+        } else {
             mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
