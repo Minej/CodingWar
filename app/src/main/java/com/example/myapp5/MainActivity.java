@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FirebaseRecyclerOptions<Comment> CommentOption;
     FirebaseRecyclerAdapter<Comment, CommentViewHolder> CommentAdapter;
 
+    /*alefimqwopergmfeomfepomrf*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
