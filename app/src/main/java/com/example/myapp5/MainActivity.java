@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DatabaseReference mUserRef, PostRef, LikeRef, commentRef;
     String profileImageUrlV, usernameV;
     CircleImageView profileImageHeader;
-    TextView usernameHeader;
+    TextView username_header;
     ImageView addImagePost, sendImagePost;
     EditText inputPostDesc;
     Uri imageUri;
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         View view = navigationView.inflateHeaderView(R.layout.drawer_header);
         profileImageHeader = view.findViewById(R.id.profileImage_header);
-        usernameHeader = view.findViewById(R.id.username_header);
+        username_header = view.findViewById(R.id.username_header);
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -331,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         profileImageUrlV = dataSnapshot.child("profileImage").getValue().toString();
                         usernameV = dataSnapshot.child("username").getValue().toString();
                         Picasso.get().load(profileImageUrlV).into(profileImageHeader);
-                        usernameHeader.setText(usernameV);
+                        username_header.setText(usernameV);
                     }
 
                 }
