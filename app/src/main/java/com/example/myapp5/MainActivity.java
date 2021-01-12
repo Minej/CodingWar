@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onStart() {
         super.onStart();
         if (mUser == null) {
-            SendToLoginActivity();
+            SendUserToLoginActivity();
         } else {
             mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -345,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void SendToLoginActivity() {
+    private void SendUserToLoginActivity() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();

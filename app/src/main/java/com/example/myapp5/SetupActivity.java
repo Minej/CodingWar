@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -65,7 +63,7 @@ public class SetupActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        mRef = FirebaseDatabase.getInstance().getReference().child("User");
+        mRef = FirebaseDatabase.getInstance().getReference().child("Users");
         StorageRef = FirebaseStorage.getInstance().getReference().child("ProfileImages");
 
 
