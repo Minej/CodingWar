@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        mUserRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("User");
         PostRef = FirebaseDatabase.getInstance().getReference().child("Posts");
         LikeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
@@ -127,9 +127,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LoadPost();
     }
 
-    private void LoadPost() {
+    private void LoadPost()
+    {
         options = new FirebaseRecyclerOptions.Builder<Posts>().setQuery(PostRef, Posts.class).build();
-        adapter = new FirebaseRecyclerAdapter<Posts, MyViewHolder>(options) {
+        adapter = new FirebaseRecyclerAdapter<Posts, MyViewHolder>(options)
+        {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Posts model) {
                 final String postKey = getRef(position).getKey();

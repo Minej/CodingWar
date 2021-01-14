@@ -44,7 +44,7 @@ public class FindFriendActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mUserRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("User");
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
