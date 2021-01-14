@@ -48,11 +48,11 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    String profileImageUrl = snapshot.child("ProfileImage").getValue().toString();
-                    String username = snapshot.child("Username").getValue().toString();
-                    String city = snapshot.child("City").getValue().toString();
-                    String country = snapshot.child("Country").getValue().toString();
-                    String profession = snapshot.child("Profession").getValue().toString();
+                    String profileImageUrl = snapshot.child("profileImage").getValue().toString();
+                    String username = snapshot.child("username").getValue().toString();
+                    String city = snapshot.child("city").getValue().toString();
+                    String country = snapshot.child("country").getValue().toString();
+                    String profession = snapshot.child("profession").getValue().toString();
 
 
                     Picasso.get().load(profileImageUrl).into(profileImageView);
