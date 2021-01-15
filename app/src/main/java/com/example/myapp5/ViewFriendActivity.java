@@ -11,7 +11,7 @@ public class ViewFriendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_friend);
-        String userID=getIntent().getStringExtra("userKet");
+        String userID=getIntent().getStringExtra("userKey   ");
         Toast.makeText(this,""+userID,Toast.LENGTH_SHORT).show();
     }
 }
