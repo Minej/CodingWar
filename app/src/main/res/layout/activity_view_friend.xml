@@ -58,10 +58,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/profileImage" />
 
             <TextView
-                android:id="@+id/adress"
+                android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:text="Baku,Azerbaijan"
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp"
