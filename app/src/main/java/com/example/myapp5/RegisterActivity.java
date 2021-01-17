@@ -42,7 +42,6 @@ public class RegisterActivity extends AppCompatActivity {
         mLoadingBar = new ProgressDialog(this);
 
 
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,40 +64,40 @@ public class RegisterActivity extends AppCompatActivity {
         String confirmPassword = ConfirmPassword.getEditText().getText().toString();
 
 
-        if (email.isEmpty() || email.contains("@gmail")) ;
-        {
-            showError(inputEmail, "Email is not Valid");
-        }
-        if (password.isEmpty() || password.length() < 5) {
-            showError(Password, "Password must be created than 5 latter");
-        } else if (!confirmPassword.equals(password)) {
-            showError(ConfirmPassword, "Password did not Match!");
-
+        if (email.isEmpty()) {
+            showError(this.inputEmail, "Email is not Valid");
         } else {
-            mLoadingBar.setTitle("registration");
-            mLoadingBar.setMessage("Please wait, While your Credentials");
-            mLoadingBar.setCanceledOnTouchOutside(false);
-            mLoadingBar.show();
-            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        mLoadingBar.dismiss();
-                        Toast.makeText(RegisterActivity.this, "Register is Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
+            if (password.isEmpty() || password.length() < 5) {
+                showError(Password, "Password must be created than 5 latter");
+            } else if (!confirmPassword.equals(password)) {
+                showError(ConfirmPassword, "Password did not Match!");
 
-                    } else
-                        {
-                        mLoadingBar.dismiss();
-                        Toast.makeText(RegisterActivity.this, "Register is Failed", Toast.LENGTH_SHORT).show();
+            } else {
+                mLoadingBar.setTitle("registration");
+                mLoadingBar.setMessage("Please wait, While your Credentials");
+                mLoadingBar.setCanceledOnTouchOutside(false);
+                mLoadingBar.show();
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            mLoadingBar.dismiss();
+                            Toast.makeText(RegisterActivity.this, "Register is Successful", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
+
+                        } else {
+                            mLoadingBar.dismiss();
+                            Toast.makeText(RegisterActivity.this, "Register is Failed", Toast.LENGTH_SHORT).show();
+                        }
                     }
+                });
 
-                }
-            });
 
+
+            }
         }
     }
 
