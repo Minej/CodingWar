@@ -133,7 +133,7 @@
                 android:background="@color/colorGray"
                 app:layout_constraintEnd_toEndOf="@+id/commentImage"
                 app:layout_constraintStart_toStartOf="@+id/likeImage"
-                app:layout_constraintTop_toBottomOf="@+id/likeImage"/>
+                app:layout_constraintTop_toBottomOf="@+id/likeImage" />
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -166,11 +166,11 @@
                 android:id="@+id/sendComment"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_marginEnd="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/inputComments"
-                app:layout_constraintEnd_toEndOf="@+id/inputComments"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerViewComments"
+                app:layout_constraintHorizontal_bias="0.953"
+                app:layout_constraintStart_toStartOf="@+id/recyclerViewComments"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerViewComments"
-                app:layout_constraintVertical_bias="0.666"
                 app:srcCompat="@drawable/send" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

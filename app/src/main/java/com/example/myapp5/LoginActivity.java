@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         createNewAccount=findViewById(R.id.createNewAccount);
         mLoadingBar = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
+
 
         createNewAccount.setOnClickListener(new View.OnClickListener() {
             @Override

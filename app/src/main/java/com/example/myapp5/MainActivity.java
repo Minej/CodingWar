@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         username_header = view.findViewById(R.id.username_header);
 
         navigationView.setNavigationItemSelectedListener(this);
+
 
         sendImagePost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -347,6 +349,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
     private void SendUserToLoginActivity() {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
@@ -392,4 +395,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
+
 }

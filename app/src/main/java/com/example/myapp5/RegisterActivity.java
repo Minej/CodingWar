@@ -41,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(this);
 
+
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

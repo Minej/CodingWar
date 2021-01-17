@@ -32,6 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         mUser=mAuth.getCurrentUser();
         mRef= FirebaseDatabase.getInstance().getReference().child("Users");
 
+
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
