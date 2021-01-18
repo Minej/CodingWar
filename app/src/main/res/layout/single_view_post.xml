@@ -154,8 +154,9 @@
                 android:background="@drawable/input_comment_bg"
                 android:hint="Enter comment"
                 android:paddingStart="10dp"
-                android:paddingLeft="20dp"
+                android:paddingLeft="5dp"
                 android:paddingTop="5dp"
+                android:paddingRight="40dp"
                 android:paddingBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/recyclerViewComments"
@@ -165,12 +166,12 @@
             <ImageView
                 android:id="@+id/sendComment"
                 android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/recyclerViewComments"
-                app:layout_constraintHorizontal_bias="0.953"
-                app:layout_constraintStart_toStartOf="@+id/recyclerViewComments"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerViewComments"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/inputComments"
+                app:layout_constraintEnd_toEndOf="@id/inputComments"
+                app:layout_constraintTop_toBottomOf="@id/inputComments"
+                app:layout_constraintTop_toTopOf="@id/inputComments"
                 app:srcCompat="@drawable/send" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
