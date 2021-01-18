@@ -235,8 +235,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
-
     }
 
     private String calculateTimeAgo(String datePost) {
@@ -380,6 +378,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.Logout:
                 mAuth.signOut();
+                mUser = null;
                 Intent intent=new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
