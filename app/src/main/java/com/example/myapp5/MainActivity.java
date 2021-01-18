@@ -2,6 +2,7 @@ package com.example.myapp5;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,8 +53,9 @@ import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     private static final int REQUEST_CODE = 101;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -78,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Home");
@@ -131,8 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void LoadPost()
     {
         options = new FirebaseRecyclerOptions.Builder<Posts>().setQuery(PostRef, Posts.class).build();
-        adapter = new FirebaseRecyclerAdapter<Posts, MyViewHolder>(options)
-        {
+        adapter = new FirebaseRecyclerAdapter<Posts, MyViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Posts model) {
                 final String postKey = getRef(position).getKey();
@@ -380,7 +380,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.Logout:
                 mAuth.signOut();
-                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                mUser = null;
+                Intent intent=new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;
