@@ -89,6 +89,7 @@
                 android:id="@+id/btnSave"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btn_perform"
                 android:text="Save"
                 app:layout_constraintEnd_toEndOf="@+id/inputProfession"
                 app:layout_constraintStart_toStartOf="@+id/inputProfession"
