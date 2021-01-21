@@ -100,16 +100,16 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if (email.isEmpty()) {
-            showError(this.inputEmail, "Email is not Valid");
+            showError(this.inputEmail, "Email не найден");
         } else {
-            if (password.isEmpty() || password.length() < 5) {
-                showError(Password, "Password must be created than 5 latter");
+            if (password.isEmpty() || password.length() < 6) {
+                showError(Password, "Пароль меньше шести. Взломать же могут");
             } else if (!confirmPassword.equals(password)) {
-                showError(ConfirmPassword, "Password did not Match!");
+                showError(ConfirmPassword, "Воу! Что-то много, может поменьше?");
 
             } else {
                 mLoadingBar.setTitle("registration");
-                mLoadingBar.setMessage("Please wait, While your Credentials");
+                mLoadingBar.setMessage("Пожалуйста подожди идет создание твоего аккаунта)");
                 mLoadingBar.setCanceledOnTouchOutside(false);
                 mLoadingBar.show();
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -117,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             mLoadingBar.dismiss();
-                            Toast.makeText(RegisterActivity.this, "Register is Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Ура! Твой аккуант создан!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
@@ -125,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         } else {
                             mLoadingBar.dismiss();
-                            Toast.makeText(RegisterActivity.this, "Register is Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Упс! Что-то пошло не так(", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -68,10 +68,10 @@
 
     <TextView
         android:id="@+id/logo"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Register"
+        android:text="Регистрация"
         android:textColor="@color/colorGray"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -117,7 +117,7 @@
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="Пароль"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,7 +129,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/btn_perform"
         android:gravity="center"
-        android:text="Register"
+        android:text="Зарегистрируйся"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/ConfirmPassword"
         app:layout_constraintStart_toStartOf="@+id/Password"
@@ -151,7 +151,7 @@
             android:id="@+id/inputConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:hint="Снова пароль"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:gravity="center"
-        android:text="Already have an Account?"
+        android:text="У тебя есть аккаунт?"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

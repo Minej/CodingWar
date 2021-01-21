@@ -28,7 +28,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/input_add_post_bg"
-            android:hint="Write Something here"
+            android:hint="Напиши что нибудь"
             android:paddingLeft="50dp"
             android:paddingTop="10dp"
             android:paddingRight="50dp"

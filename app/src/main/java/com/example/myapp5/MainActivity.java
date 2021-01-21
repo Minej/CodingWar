@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onClick(View v) {
                         String comment = holder.inputComments.getText().toString();
                         if (comment.isEmpty()) {
-                            Toast.makeText(MainActivity.this, "Please write something in EditText", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Пожалуйста введи что-нибудь", Toast.LENGTH_SHORT).show();
                         } else {
                             AddComment(holder, postKey, commentRef, mUser.getUid(), comment);
                         }
@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "Comment Added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Комментарий добавлен", Toast.LENGTH_SHORT).show();
                     adapter.notifyDataSetChanged();
                     holder.inputComments.setText(null);
                 } else {
@@ -263,9 +263,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private void AddPost() {
         String postDesc = inputPostDesc.getText().toString();
         if (postDesc.isEmpty() || postDesc.length() < 1) {
-            inputPostDesc.setError("Please write something in post");
+            inputPostDesc.setError("Пожалуйста напиши что-нибудь");
         } else if (imageUri == null) {
-            Toast.makeText(this, "Please select an image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Без фотки? Ну так же не интересно", Toast.LENGTH_SHORT).show();
         } else {
             mLoadingBar.setTitle("Твой пост добавляется пожалуйста потерпи немного)");
             mLoadingBar.setCanceledOnTouchOutside(false);
@@ -339,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(MainActivity.this, "Sorry!, Something going wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Упс! Что-то пошло не так", Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -357,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Дом", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.profile:
@@ -365,7 +365,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.friend:
-                Toast.makeText(this, "Friend", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Друзья", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.find_friend:
@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.chat:
-                Toast.makeText(this, "Chat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Чат", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.Logout:

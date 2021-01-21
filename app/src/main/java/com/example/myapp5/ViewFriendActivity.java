@@ -75,10 +75,10 @@ public class ViewFriendActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(ViewFriendActivity.this, "You have sent Friend Request", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewFriendActivity.this, "Запрос на добавление друга отправлено", Toast.LENGTH_SHORT).show();
                         btnDecline.setVisibility(View.GONE);
-                        CurrentState = "I sent pending";
-                        btnPerform.setText("Cancel Friend Request");
+                        CurrentState = "Отправлено на рассмотрении";
+                        btnPerform.setText("Отмена на добавление в друзья");
                     }
                     else {
                         Toast.makeText(ViewFriendActivity.this, ""+task.getException().toString(), Toast.LENGTH_SHORT).show();
@@ -87,14 +87,14 @@ public class ViewFriendActivity extends AppCompatActivity {
             });
 
         }
-        if (CurrentState.equals("I sent pending") || CurrentState.equals("I sent decline")){
+        if (CurrentState.equals("Отправлено на рассмотрении") || CurrentState.equals("Кыш от сюда!")){
             requestRef.child(mUser.getUid()).child(userID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(ViewFriendActivity.this, "You have cancelled Friend Request", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewFriendActivity.this, "Отмена на добавление в друзья", Toast.LENGTH_SHORT).show();
                         CurrentState="nothing happen";
-                        btnPerform.setText("send Friend Request");
+                        btnPerform.setText("Запрос на добавление друга");
                         btnDecline.setVisibility(View.GONE);
                     }
                     else{
@@ -103,7 +103,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                 }
             });
         }
-        if (CurrentState.equals("he sent pending")){
+        if (CurrentState.equals("Он хочет подружится")){
             requestRef.child(mUser.getUid()).child(userID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -119,10 +119,10 @@ public class ViewFriendActivity extends AppCompatActivity {
                                     FriendRef.child(userID).child(mUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                                         @Override
                                         public void onComplete(@NonNull Task task) {
-                                            Toast.makeText(ViewFriendActivity.this, "You added Friend", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ViewFriendActivity.this, "Теперь вы друзья", Toast.LENGTH_SHORT).show();
                                             CurrentState="friend";
-                                            btnPerform.setText("send SMS");
-                                            btnDecline.setText("UnFriend");
+                                            btnPerform.setText("Напиши СМС");
+                                            btnDecline.setText("Не дружить");
                                             btnDecline.setVisibility(View.VISIBLE);
                                         }
                                     });
@@ -157,7 +157,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ViewFriendActivity.this, "Data not found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewFriendActivity.this, "Не найдено", Toast.LENGTH_SHORT).show();
                 }
             }
 

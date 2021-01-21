@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Login!"
+        android:text="Логин!"
         android:textColor="@color/colorGray"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -116,7 +116,7 @@
             android:id="@+id/Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="Пароль"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,7 +128,7 @@
         android:gravity="right"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
-        android:text="Forgot Password?"
+        android:text="Забыл пароль?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
@@ -140,7 +140,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:background="@drawable/btn_perform"
-        android:text="Login"
+        android:text="Логин"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/forgotPassword"
         app:layout_constraintHorizontal_bias="0.543"
@@ -154,7 +154,7 @@
         android:layout_marginTop="17dp"
         android:layout_marginEnd="28dp"
         android:gravity="center"
-        android:text="Create new Account?"
+        android:text="У тебя есть аккаунт?"
         android:textColor="@color/colorWhite"
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/inputEmail"

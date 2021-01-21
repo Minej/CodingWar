@@ -103,13 +103,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = inputPassword.getEditText().getText().toString();
 
         if (email.isEmpty()) {
-            showError(this.inputEmail, "Email is not Valid");
+            showError(this.inputEmail, "Email не найден. Попробуй ещё раз)");
         } else {
-            if (password.isEmpty() || password.length() < 5) {
-                showError(inputPassword, "Password must be created than 5 latter");
+            if (password.isEmpty() || password.length() < 6) {
+                showError(inputPassword, "Что-то пошло не так( Попробуй заново");
             } else {
-                mLoadingBar.setTitle("Login");
-                mLoadingBar.setMessage("Please wait, While your Credentials");
+                mLoadingBar.setTitle("Логин");
+                mLoadingBar.setMessage("Пожалуйста подожди, сейчас ищем твой аккаунт)");
                 mLoadingBar.setCanceledOnTouchOutside(false);
                 mLoadingBar.show();
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             mLoadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Login is Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Ура! Все прошло успешно!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, SetupActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
                             mLoadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Login is Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Извини, но что-то пошло не так( Попробуй заново.", Toast.LENGTH_SHORT).show();
                         }
 
                     }
