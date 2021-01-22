@@ -110,7 +110,7 @@ public class SetupActivity extends AppCompatActivity {
             Toast.makeText(this, "Без картинки не то(", Toast.LENGTH_SHORT).show();
         }else
             {
-            mLoadingBar.setTitle("adding Setup Profile");
+            mLoadingBar.setTitle("Идет создание твоего аккаунта");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
             StorageRef.child(mUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {

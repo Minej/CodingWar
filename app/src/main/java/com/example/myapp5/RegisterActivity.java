@@ -108,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
                 showError(ConfirmPassword, "Воу! Что-то много, может поменьше?");
 
             } else {
-                mLoadingBar.setTitle("registration");
+                mLoadingBar.setTitle("Регистрация");
                 mLoadingBar.setMessage("Пожалуйста подожди идет создание твоего аккаунта)");
                 mLoadingBar.setCanceledOnTouchOutside(false);
                 mLoadingBar.show();
