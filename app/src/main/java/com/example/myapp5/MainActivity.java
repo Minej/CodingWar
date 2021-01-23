@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private String calculateTimeAgo(String datePost) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         try {
             long time = sdf.parse(datePost).getTime();
             long now = System.currentTimeMillis();
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mLoadingBar.show();
 
             Date date = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             String strDate = formatter.format(date);
 
             postImageRef.child(mUser.getUid() + strDate).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {

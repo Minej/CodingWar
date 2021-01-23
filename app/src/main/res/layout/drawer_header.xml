@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/username_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
