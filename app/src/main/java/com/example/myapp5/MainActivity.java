@@ -100,14 +100,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LikeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
 
-
         // Evil references
         evilPostRef = FirebaseDatabase.getInstance().getReference().child("TestRef").child("Posts");
 
-
-
         postImageRef = FirebaseStorage.getInstance().getReference().child("PostImages");
-
 
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
@@ -117,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         username_header = view.findViewById(R.id.username_header);
 
         navigationView.setNavigationItemSelectedListener(this);
-
 
         sendImagePost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,13 +134,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     /*
-    *
-    *
-    * MY EVIL CREATE POST AHAHAHAH
-    *
-    *
-    * */
-    private void ahahahaMyEvilCreatePost(){
+     *
+     *
+     * MY EVIL CREATE POST AHAHAHAH
+     *
+     *
+     * */
+    private void ahahahaMyEvilCreatePost() {
         String postDesc = inputPostDesc.getText().toString();
 
         if (postDesc.isEmpty() || postDesc.length() < 1) {
@@ -194,20 +189,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     } else {
                         mLoadingBar.dismiss();
                         Toast.makeText(MainActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
-
                     }
-
                 }
             });
-
         }
     }
 
-    private void LoadPost()
-    {
+    private void LoadPost() {
         options = new FirebaseRecyclerOptions.Builder<Posts>().setQuery(evilPostRef, Posts.class).build();
-        adapter = new FirebaseRecyclerAdapter<Posts, MyViewHolder>(options)
-        {
+        adapter = new FirebaseRecyclerAdapter<Posts, MyViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull Posts model) {
                 final String postKey = getRef(position).getKey();
@@ -255,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
                 LoadComment(postKey);
-
             }
 
             @NonNull
@@ -368,8 +357,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         postImageRef.child(mUser.getUid() + strDate).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-
-
                                 HashMap hashMap = new HashMap();
                                 hashMap.put("datePost", strDate);
                                 hashMap.put("postImageUrl", uri.toString());
@@ -397,12 +384,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Toast.makeText(MainActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
 
                     }
-
                 }
             });
-
         }
-
     }
 
     @Override
@@ -420,7 +404,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Picasso.get().load(profileImageUrlV).into(profileImageHeader);
                         username_header.setText(usernameV);
                     }
-
                 }
 
                 @Override
@@ -465,7 +448,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Logout:
                 mAuth.signOut();
                 mUser = null;
-                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;
@@ -482,5 +465,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return true;
     }
-
 }
