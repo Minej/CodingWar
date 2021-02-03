@@ -5,25 +5,25 @@
 
 
     <item android:id="@+id/home"
-        android:title="Home"
+        android:title="Главное"
         android:icon="@drawable/ic_home"/>
     <item android:id="@+id/profile"
-            android:title="Profile"
+            android:title="Профиль"
             android:icon="@drawable/ic_profile"/>
     <item android:id="@+id/friend"
-            android:title="Friend"
+            android:title="Друзья"
             android:icon="@drawable/ic_friend"/>
     <item android:id="@+id/find_friend"
-            android:title="Find Friend"
+            android:title="Найти Друзей"
             android:icon="@drawable/ic_find_friend"/>
     <item android:id="@+id/chat"
-            android:title="Chat"
+            android:title="Чат"
             android:icon="@drawable/ic_chat"/>
 
     </group>
     <group android:id="@+id/second">
         <item android:id="@+id/Logout"
-            android:title="Logout"
+            android:title="Выход"
             android:icon="@drawable/ic_logout"/>
     </group>
 

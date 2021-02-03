@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle("Главное");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
         addImagePost = findViewById(R.id.addimagePost);
@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // Evil references
         evilPostRef = FirebaseDatabase.getInstance().getReference().child("TestRef").child("Posts");
-
         postImageRef = FirebaseStorage.getInstance().getReference().child("PostImages");
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         sendImagePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //AddPost();
+                //AddEvilPost :)
                 ahahahaMyEvilCreatePost();
             }
         });
@@ -133,13 +132,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LoadPost();
     }
 
-    /*
-     *
-     *
-     * MY EVIL CREATE POST AHAHAHAH
-     *
-     *
-     * */
+
+      /*MY EVIL CREATE POST AHAHAHAH*/
+
     private void ahahahaMyEvilCreatePost() {
         String postDesc = inputPostDesc.getText().toString();
 
