@@ -107,12 +107,12 @@ public class ViewFriendActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     if (snapshot.child("status").getValue().toString().equals("pending")){
-                        CurrentState = "I sent pending";
+                        CurrentState = "I_sent_pending";
                         btnPerform.setText("Cancel friend request");
                         btnDecline.setVisibility(View.GONE);
                     }
                     if (snapshot.child("status").getValue().toString().equals("decline")){
-                        CurrentState = "I send decline";
+                        CurrentState = "I_send_decline";
                         btnPerform.setText("Cancel friend request");
                         btnDecline.setVisibility(View.GONE);
                     }
@@ -159,10 +159,10 @@ public class ViewFriendActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task task) {
                     if(task.isSuccessful()){
-                        Toast.makeText(ViewFriendActivity.this, "Запрос на добавление друга отправлено", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewFriendActivity.this, "You have sent Friend Requests", Toast.LENGTH_SHORT).show();
                         btnDecline.setVisibility(View.GONE);
-                        CurrentState = "Отправлено на рассмотрении";
-                        btnPerform.setText("Отмена на добавление в друзья");
+                        CurrentState = "I_sent_pending";
+                        btnPerform.setText("Cancel Friend Request");
                     }
                     else {
                         Toast.makeText(ViewFriendActivity.this, ""+task.getException().toString(), Toast.LENGTH_SHORT).show();
@@ -171,14 +171,14 @@ public class ViewFriendActivity extends AppCompatActivity {
             });
 
         }
-        if (CurrentState.equals("Отправлено на рассмотрении") || CurrentState.equals("Кыш от сюда!")){
+        if (CurrentState.equals("I_sent_pending") || CurrentState.equals("I_sent_decline")){
             requestRef.child(mUser.getUid()).child(userID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(ViewFriendActivity.this, "Отмена на добавление в друзья", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewFriendActivity.this, "You have canceled Friend Request", Toast.LENGTH_SHORT).show();
                         CurrentState="nothing happen";
-                        btnPerform.setText("Запрос на добавление друга");
+                        btnPerform.setText("Send Friend Request");
                         btnDecline.setVisibility(View.GONE);
                     }
                     else{
@@ -187,7 +187,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                 }
             });
         }
-        if (CurrentState.equals("Он/она хочет дружить")){
+        if (CurrentState.equals("he_sent_pending")){
             requestRef.child(userID).child(mUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -196,17 +196,17 @@ public class ViewFriendActivity extends AppCompatActivity {
                         hashMap.put("status","friend");
                         hashMap.put("username",username);
                         hashMap.put("profileImageUrl",profileImageUrl);
-                        friendRef.child(userID).child(mUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+                        friendRef.child(mUser.getUid()).child(userID).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                             @Override
                             public void onComplete(@NonNull Task task) {
                                 if (task.isSuccessful()){
                                     friendRef.child(userID).child(mUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                                         @Override
                                         public void onComplete(@NonNull Task task) {
-                                            Toast.makeText(ViewFriendActivity.this, "Теперь вы друзья", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ViewFriendActivity.this, "You add Friend", Toast.LENGTH_SHORT).show();
                                             CurrentState="friend";
-                                            btnPerform.setText("Напиши СМС");
-                                            btnDecline.setText("Не дружить");
+                                            btnPerform.setText("send SMS");
+                                            btnDecline.setText("UnFriend");
                                             btnDecline.setVisibility(View.VISIBLE);
                                         }
                                     });
@@ -219,7 +219,7 @@ public class ViewFriendActivity extends AppCompatActivity {
         }
         if (CurrentState.equals("friend"))
         {
-
+            //
         }
     }
 
