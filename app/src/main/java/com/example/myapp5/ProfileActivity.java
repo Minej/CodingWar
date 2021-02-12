@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ProfileActivity.this, "Data not exist", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "Твой профиль не найден", Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -4,15 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_100"
     tools:context="com.example.myapp5.LoginActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/night_bg"
+        android:id="@+id/night_bg"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/day_bg"
+        android:background="@drawable/day_bg"/>
+
+
+    <ImageView
+        android:id="@+id/sun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sun"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.942"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.721" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/night_landscape"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/night_landscape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/night_bg"
+        app:layout_constraintVertical_bias="1.0" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:id="@+id/day_landscape"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/day_landscape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/night_bg"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.mahfa.dnswitch.DayNightSwitch
+        android:id="@+id/day_night_switch"
+        android:layout_width="76dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Login!"
+        android:text="Логин!"
         android:textColor="@color/colorGray"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -31,7 +89,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_input_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo">
@@ -51,7 +108,6 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_input_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputEmail">
@@ -60,7 +116,7 @@
             android:id="@+id/Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="Пароль"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,10 +124,11 @@
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
         android:gravity="right"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
-        android:text="Forgot Password?"
+        android:text="Забыл пароль?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
@@ -82,8 +139,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:gravity="center"
-        android:background="@drawable/bg_btn"
-        android:text="Login"
+        android:background="@drawable/btn_perform"
+        android:text="Логин"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/forgotPassword"
         app:layout_constraintHorizontal_bias="0.543"
@@ -94,15 +151,15 @@
         android:id="@+id/createNewAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="28dp"
         android:gravity="center"
-        android:text="Create new Account?"
+        android:text="У тебя нет аккаунт?"
+        android:textColor="@color/colorWhite"
         android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/inputEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
-
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

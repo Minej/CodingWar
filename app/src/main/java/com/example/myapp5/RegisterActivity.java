@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.mahfa.dnswitch.DayNightSwitch;
+import com.mahfa.dnswitch.DayNightSwitchListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -27,6 +30,9 @@ public class RegisterActivity extends AppCompatActivity {
     TextView alreadyHaveAccount;
     FirebaseAuth mAuth;
     ProgressDialog mLoadingBar;
+    ImageView sun, dayLand, nightLand;
+    View daySky, nightSky;
+    DayNightSwitch dayNightSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,35 @@ public class RegisterActivity extends AppCompatActivity {
         alreadyHaveAccount = findViewById(R.id.alreadyHaveAccount);
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(this);
+
+        //Day_Night_Switch
+        sun = findViewById(R.id.sun);
+        dayLand = findViewById(R.id.day_landscape);
+        nightLand = findViewById(R.id.night_landscape);
+        daySky = findViewById(R.id.day_bg);
+        nightSky= findViewById(R.id.night_bg);
+        dayNightSwitch= findViewById(R.id.day_night_switch);
+
+        sun.setTranslationY(-110);
+
+        dayNightSwitch.setListener(new DayNightSwitchListener() {
+            @Override
+            public void onSwitch(boolean is_night) {
+                if (is_night){
+                    sun.animate().translationY(110).setDuration(1000);
+                    dayLand.animate().alpha(0).setDuration(1300);
+                    daySky.animate().alpha(0).setDuration(1300);
+                }
+                else
+                {
+
+                    sun.animate().translationY(-110).setDuration(1000);
+                    dayLand.animate().alpha(1).setDuration(1300);
+                    daySky.animate().alpha(1).setDuration(1300);
+
+                }
+            }
+        });
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -65,16 +100,16 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if (email.isEmpty()) {
-            showError(this.inputEmail, "Email is not Valid");
+            showError(this.inputEmail, "Email не найден");
         } else {
-            if (password.isEmpty() || password.length() < 5) {
-                showError(Password, "Password must be created than 5 latter");
+            if (password.isEmpty() || password.length() < 6) {
+                showError(Password, "Пароль меньше шести. Взломать же могут");
             } else if (!confirmPassword.equals(password)) {
-                showError(ConfirmPassword, "Password did not Match!");
+                showError(ConfirmPassword, "Воу! Что-то много, может поменьше?");
 
             } else {
-                mLoadingBar.setTitle("registration");
-                mLoadingBar.setMessage("Please wait, While your Credentials");
+                mLoadingBar.setTitle("Регистрация");
+                mLoadingBar.setMessage("Пожалуйста подожди идет создание твоего аккаунта)");
                 mLoadingBar.setCanceledOnTouchOutside(false);
                 mLoadingBar.show();
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -82,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             mLoadingBar.dismiss();
-                            Toast.makeText(RegisterActivity.this, "Register is Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Ура! Твой аккуант создан!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, SetupActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
@@ -90,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         } else {
                             mLoadingBar.dismiss();
-                            Toast.makeText(RegisterActivity.this, "Register is Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Упс! Что-то пошло не так(", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

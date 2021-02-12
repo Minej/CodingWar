@@ -95,22 +95,22 @@ public class SetupActivity extends AppCompatActivity {
 
         if (username.isEmpty() || username.length() < 3)
         {
-            showError(inputUsername, "Username is not Valid");
+            showError(inputUsername, "Что-то маьнекое имя");
         } else if (city.isEmpty() || city.length() < 3)
         {
-            showError(inputCity, "City is not valid");
+            showError(inputCity, "Город не найден(");
         } else if (country.isEmpty() || country.length() < 3)
         {
-            showError(inputCountry, "Country is not valid");
-        } else if (profession.isEmpty() || profession.length() < 3)
+            showError(inputCountry, "Такая странна существует?");
+        } else if (profession.isEmpty() || profession.length() < 2)
         {
-            showError(inputProfession, "Profession is not valid");
+            showError(inputProfession, "Хммм впервые слышу такую професию");
         } else if (imageUri == null)
         {
-            Toast.makeText(this, "Plz select an image", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Без картинки не то(", Toast.LENGTH_SHORT).show();
         }else
             {
-            mLoadingBar.setTitle("adding Setup Profile");
+            mLoadingBar.setTitle("Идет создание твоего аккаунта");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
             StorageRef.child(mUser.getUid()).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -136,7 +136,7 @@ public class SetupActivity extends AppCompatActivity {
                                         Intent intent = new Intent(SetupActivity.this, MainActivity.class);
                                         startActivity(intent);
                                         mLoadingBar.dismiss();
-                                        Toast.makeText(SetupActivity.this, "Setup Profile completed", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SetupActivity.this, "Профиль создан!", Toast.LENGTH_SHORT).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override

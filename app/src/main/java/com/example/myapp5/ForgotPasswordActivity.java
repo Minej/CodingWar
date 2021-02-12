@@ -33,7 +33,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email=inputEmail.getText().toString();
                 if (email.isEmpty()){
-                    Toast.makeText(ForgotPasswordActivity.this, "Please Enter your Email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgotPasswordActivity.this, "Пожалуйста введ смой Email", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -41,11 +41,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful())
                             {
-                                Toast.makeText(ForgotPasswordActivity.this, "Please check your email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ForgotPasswordActivity.this, "Тебе почта! Проверька свой Email", Toast.LENGTH_SHORT).show();
                             }
                             else
                             {
-                                Toast.makeText(ForgotPasswordActivity.this, "Email not send!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ForgotPasswordActivity.this, "Email не отправлен(. Попробуй позже!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

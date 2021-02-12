@@ -44,7 +44,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void countLikes(String postKey, String uid, DatabaseReference likeRef) {
-        likeRef.child(postKey).addValueEventListener(new ValueEventListener() {
+        likeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists())
@@ -63,7 +63,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
 
             }
         });
-        likeRef.child(postKey).addValueEventListener(new ValueEventListener() {
+        likeRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists())
@@ -84,7 +84,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void countComments(String postKey, String uid, DatabaseReference commentRef) {
-        commentRef.child(postKey).addValueEventListener(new ValueEventListener() {
+        commentRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists())
