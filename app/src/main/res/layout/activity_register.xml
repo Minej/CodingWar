@@ -124,7 +124,7 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="162dp"
+        android:layout_width="195dp"
         android:layout_height="53dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/btn_perform"
@@ -151,8 +151,8 @@
             android:id="@+id/inputConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Снова пароль"
-            android:inputType="textPassword"/>
+            android:hint="Подтверждение пароля"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -160,7 +160,7 @@
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:gravity="center"
-        android:text="У тебя есть аккаунт?"
+        android:text="У тебя есть аккаунта?"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

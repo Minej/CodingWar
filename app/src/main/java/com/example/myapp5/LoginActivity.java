@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.mahfa.dnswitch.DayNightSwitch;
+import com.mahfa.dnswitch.DayNightSwitchListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,6 +27,9 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgotPassword, createNewAccount;
     ProgressDialog mLoadingBar;
     FirebaseAuth mAuth;
+    ImageView sun, dayLand, nightLand;
+    View daySky, nightSky;
+    DayNightSwitch dayNightSwitch;
 
 
     @Override
@@ -38,6 +44,35 @@ public class LoginActivity extends AppCompatActivity {
         createNewAccount = findViewById(R.id.createNewAccount);
         mLoadingBar = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
+
+        //Day_Night_Switch
+        sun = findViewById(R.id.sun);
+        dayLand = findViewById(R.id.day_landscape);
+        nightLand = findViewById(R.id.night_landscape);
+        daySky = findViewById(R.id.day_bg);
+        nightSky= findViewById(R.id.night_bg);
+        dayNightSwitch= findViewById(R.id.day_night_switch);
+
+        sun.setTranslationY(-110);
+
+        dayNightSwitch.setListener(new DayNightSwitchListener() {
+            @Override
+            public void onSwitch(boolean is_night) {
+                if (is_night){
+                    sun.animate().translationY(110).setDuration(1000);
+                    dayLand.animate().alpha(0).setDuration(1300);
+                    daySky.animate().alpha(0).setDuration(1300);
+                }
+                else
+                {
+
+                    sun.animate().translationY(-110).setDuration(1000);
+                    dayLand.animate().alpha(1).setDuration(1300);
+                    daySky.animate().alpha(1).setDuration(1300);
+
+                }
+            }
+        });
 
 
         createNewAccount.setOnClickListener(new View.OnClickListener() {
@@ -68,13 +103,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = inputPassword.getEditText().getText().toString();
 
         if (email.isEmpty()) {
-            showError(this.inputEmail, "Email is not Valid");
+            showError(this.inputEmail, "Email не найден. Попробуй ещё раз)");
         } else {
-            if (password.isEmpty() || password.length() < 5) {
-                showError(inputPassword, "Password must be created than 5 latter");
+            if (password.isEmpty() || password.length() < 6) {
+                showError(inputPassword, "Что-то пошло не так( Попробуй заново");
             } else {
-                mLoadingBar.setTitle("Login");
-                mLoadingBar.setMessage("Please wait, While your Credentials");
+                mLoadingBar.setTitle("Логин");
+                mLoadingBar.setMessage("Пожалуйста подожди, сейчас ищем твой аккаунт)");
                 mLoadingBar.setCanceledOnTouchOutside(false);
                 mLoadingBar.show();
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -82,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             mLoadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Login is Successful", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Ура! Все прошло успешно!", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
@@ -90,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
                             mLoadingBar.dismiss();
-                            Toast.makeText(LoginActivity.this, "Login is Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Извини, но что-то пошло не так( Попробуй заново.", Toast.LENGTH_SHORT).show();
                         }
 
                     }
