@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             mLoadingBar.dismiss();
                             Toast.makeText(LoginActivity.this, "Login is Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, SetupActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();
