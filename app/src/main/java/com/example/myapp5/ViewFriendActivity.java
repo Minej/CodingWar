@@ -117,7 +117,6 @@ public class ViewFriendActivity extends AppCompatActivity {
                         btnDecline.setVisibility(View.GONE);
                     }
                 }
-
             }
 
             @Override
