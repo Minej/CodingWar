@@ -206,10 +206,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Picasso.get().load(model.getUserProfileImageUrl()).into(holder.profileImage);
                 holder.countLikes(postKey, mUser.getUid(), evilPostRef.child(postKey).child("Likes"));
                 holder.countComments(postKey, mUser.getUid(), evilPostRef.child(postKey).child("Comments"));
+                holder.likeImage.setColorFilter(Color.GRAY);
                 holder.likeImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        evilPostRef.child(postKey).child("Likes").addListenerForSingleValueEvent(new ValueEventListener() {
+                        evilPostRef.child(postKey).child("Likes").child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if (snapshot.exists()) {
@@ -288,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         String strDate = formatter.format(date);
 
-        commentRef.child(uid + "_" + strDate).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+        commentRef.child(strDate + "_" + uid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
             @Override
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()) {
