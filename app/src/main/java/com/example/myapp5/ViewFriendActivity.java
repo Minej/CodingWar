@@ -26,35 +26,34 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewFriendActivity extends AppCompatActivity {
 
-    DatabaseReference mUserRef,requestRef, friendRef;
+    DatabaseReference mUserRef, requestRef, friendRef;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    String profileImageUrl, username, city,country;
+    String profileImageUrl, username, city, country;
 
     CircleImageView profileImage;
-    TextView Username,address;
+    TextView Username, address;
     Button btnPerform, btnDecline;
-    String CurrentState="nothing_happen";
-
+    String CurrentState = "nothing_happen";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_friend);
-        String userID=getIntent().getStringExtra("userKey");
+        String userID = getIntent().getStringExtra("userKey");
 
-        mUserRef= FirebaseDatabase.getInstance().getReference().child("User").child(userID);
-        requestRef= FirebaseDatabase.getInstance().getReference().child("Requests");
-        friendRef= FirebaseDatabase.getInstance().getReference().child("Friends");
-        mAuth=FirebaseAuth.getInstance();
-        mUser=mAuth.getCurrentUser();
-        btnPerform=findViewById(R.id.btnPerform);
-        btnDecline=findViewById(R.id.btnDecline);
+        mUserRef = FirebaseDatabase.getInstance().getReference().child("User").child(userID);
+        requestRef = FirebaseDatabase.getInstance().getReference().child("Requests");
+        friendRef = FirebaseDatabase.getInstance().getReference().child("Friends");
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        btnPerform = findViewById(R.id.btnPerform);
+        btnDecline = findViewById(R.id.btnDecline);
 
-        profileImage=findViewById(R.id.profileImage);
-        Username=findViewById(R.id.username4);
-        address=findViewById(R.id.address);
+        profileImage = findViewById(R.id.profileImage);
+        Username = findViewById(R.id.username4);
+        address = findViewById(R.id.address);
 
         LoadUser();
 
@@ -74,17 +73,17 @@ public class ViewFriendActivity extends AppCompatActivity {
     }
 
     private void Unfriend(String userID) {
-        if (CurrentState.equals("friend")){
+        if (CurrentState.equals("friend")) {
             friendRef.child(mUser.getUid()).child(userID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         friendRef.child(userID).child(mUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Toast.makeText(ViewFriendActivity.this, "You are UnFriend", Toast.LENGTH_SHORT).show();
-                                    CurrentState="nothing_happen";
+                                    CurrentState = "nothing_happen";
                                     btnPerform.setText("Send Friend Request");
                                     btnDecline.setVisibility(View.GONE);
 
@@ -95,15 +94,15 @@ public class ViewFriendActivity extends AppCompatActivity {
                 }
             });
         }
-        if (CurrentState.equals("he_sent_pending")){
+        if (CurrentState.equals("he_sent_pending")) {
             HashMap hashMap = new HashMap();
-            hashMap.put("status","decline");
+            hashMap.put("status", "decline");
             requestRef.child(userID).child(mUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override
                 public void onComplete(@NonNull Task task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(ViewFriendActivity.this, "You have Decline Friend", Toast.LENGTH_SHORT).show();
-                        CurrentState="he_sent_decline";
+                        CurrentState = "he_sent_decline";
                         btnPerform.setVisibility(View.GONE);
                         btnDecline.setVisibility(View.GONE);
                     }
@@ -116,11 +115,11 @@ public class ViewFriendActivity extends AppCompatActivity {
         friendRef.child(mUser.getUid()).child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                        CurrentState="friend";
-                        btnPerform.setText("Send SMS");
-                        btnDecline.setText("UnFriend");
-                        btnDecline.setVisibility(View.VISIBLE);
+                if (snapshot.exists()) {
+                    CurrentState = "friend";
+                    btnPerform.setText("Send SMS");
+                    btnDecline.setText("UnFriend");
+                    btnDecline.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -132,8 +131,8 @@ public class ViewFriendActivity extends AppCompatActivity {
         friendRef.child(mUser.getUid()).child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    CurrentState="friend";
+                if (snapshot.exists()) {
+                    CurrentState = "friend";
                     btnPerform.setText("Send SMS");
                     btnDecline.setText("UnFriend");
                     btnDecline.setVisibility(View.VISIBLE);
@@ -150,13 +149,13 @@ public class ViewFriendActivity extends AppCompatActivity {
         requestRef.child(mUser.getUid()).child(userID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    if (snapshot.child("status").getValue().toString().equals("pending")){
+                if (snapshot.exists()) {
+                    if (snapshot.child("status").getValue().toString().equals("pending")) {
                         CurrentState = "I_sent_pending";
                         btnPerform.setText("Cancel friend request");
                         btnDecline.setVisibility(View.GONE);
                     }
-                    if (snapshot.child("status").getValue().toString().equals("decline")){
+                    if (snapshot.child("status").getValue().toString().equals("decline")) {
                         CurrentState = "I_send_decline";
                         btnPerform.setText("Cancel friend request");
                         btnDecline.setVisibility(View.GONE);
@@ -172,8 +171,8 @@ public class ViewFriendActivity extends AppCompatActivity {
         requestRef.child(userID).child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    if (snapshot.child("status").getValue().toString().equals("pending")){
+                if (snapshot.exists()) {
+                    if (snapshot.child("status").getValue().toString().equals("pending")) {
                         CurrentState = "he_sent_pending";
                         btnPerform.setText("Accept Friend Request");
                         btnDecline.setText("Decline Friend");
@@ -187,68 +186,65 @@ public class ViewFriendActivity extends AppCompatActivity {
 
             }
         });
-        if (CurrentState.equals("nothing_happen")){
-            CurrentState = "nothing_happen";
-            btnPerform.setText("Send Friend Request");
-            btnDecline.setVisibility(View.GONE);
-        }
+//        if (CurrentState.equals("nothing_happen")){
+//            CurrentState = "nothing_happen";
+//            btnPerform.setText("Send Friend Request");
+//            btnDecline.setVisibility(View.GONE);
+//        }
 
     }
 
     private void PerformAction(String userID) {
-        if (CurrentState.equals("nothing_happen")){
+        if (CurrentState.equals("nothing_happen")) {
             HashMap hashMap = new HashMap();
             hashMap.put("status", "pending");
             requestRef.child(mUser.getUid()).child(userID).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                 @Override
                 public void onComplete(@NonNull Task task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(ViewFriendActivity.this, "You have sent Friend Requests", Toast.LENGTH_SHORT).show();
                         btnDecline.setVisibility(View.GONE);
                         CurrentState = "I_sent_pending";
                         btnPerform.setText("Cancel Friend Request");
-                    }
-                    else {
-                        Toast.makeText(ViewFriendActivity.this, ""+task.getException().toString(), Toast.LENGTH_SHORT).show();
+                        btnPerform.setBackground(getDrawable(R.drawable.btn_decline));
+                    } else {
+                        Toast.makeText(ViewFriendActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
-        }
-        if (CurrentState.equals("I_sent_pending") || CurrentState.equals("I_sent_decline")){
+        } else if (CurrentState.equals("I_sent_pending") || CurrentState.equals("I_sent_decline")) {
             requestRef.child(mUser.getUid()).child(userID).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(ViewFriendActivity.this, "You have canceled Friend Request", Toast.LENGTH_SHORT).show();
-                        CurrentState="nothing happen";
+                        CurrentState = "nothing_happen";
                         btnPerform.setText("Send Friend Request");
+                        btnPerform.setBackground(getDrawable(R.drawable.btn_perform));
                         btnDecline.setVisibility(View.GONE);
-                    }
-                    else{
-                        Toast.makeText(ViewFriendActivity.this, ""+task.getException().toString(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ViewFriendActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-        }
-        if (CurrentState.equals("he_sent_pending")){
+        } else if (CurrentState.equals("he_sent_pending")) {
             requestRef.child(userID).child(mUser.getUid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        HashMap hashMap=new HashMap();
-                        hashMap.put("status","friend");
-                        hashMap.put("username",username);
-                        hashMap.put("profileImageUrl",profileImageUrl);
+                    if (task.isSuccessful()) {
+                        HashMap hashMap = new HashMap();
+                        hashMap.put("status", "friend");
+                        hashMap.put("username", username);
+                        hashMap.put("profileImageUrl", profileImageUrl);
                         friendRef.child(mUser.getUid()).child(userID).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                             @Override
                             public void onComplete(@NonNull Task task) {
-                                if (task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     friendRef.child(userID).child(mUser.getUid()).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                                         @Override
                                         public void onComplete(@NonNull Task task) {
                                             Toast.makeText(ViewFriendActivity.this, "You add Friend", Toast.LENGTH_SHORT).show();
-                                            CurrentState="friend";
+                                            CurrentState = "friend";
                                             btnPerform.setText("send SMS");
                                             btnDecline.setText("UnFriend");
                                             btnDecline.setVisibility(View.VISIBLE);
@@ -261,8 +257,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                 }
             });
         }
-        if (CurrentState.equals("friend"))
-        {
+        if (CurrentState.equals("friend")) {
             //
         }
     }
@@ -272,19 +267,16 @@ public class ViewFriendActivity extends AppCompatActivity {
         mUserRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists())
-                {
-                    profileImageUrl=snapshot.child("profileImage").getValue().toString();
-                    username=snapshot.child("username").getValue().toString();
-                    city=snapshot.child("city").getValue().toString();
-                    country=snapshot.child("country").getValue().toString();
+                if (snapshot.exists()) {
+                    profileImageUrl = snapshot.child("profileImage").getValue().toString();
+                    username = snapshot.child("username").getValue().toString();
+                    city = snapshot.child("city").getValue().toString();
+                    country = snapshot.child("country").getValue().toString();
 
                     Picasso.get().load(profileImageUrl).into(profileImage);
                     Username.setText(username);
-                    address.setText(city+","+country);
-                }
-                else
-                {
+                    address.setText(city + "," + country);
+                } else {
                     Toast.makeText(ViewFriendActivity.this, "Не найдено", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -292,7 +284,7 @@ public class ViewFriendActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-                Toast.makeText(ViewFriendActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewFriendActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });

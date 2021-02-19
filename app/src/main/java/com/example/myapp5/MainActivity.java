@@ -330,67 +330,67 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void AddPost() {
-        String postDesc = inputPostDesc.getText().toString();
-        if (postDesc.isEmpty() || postDesc.length() < 1) {
-            inputPostDesc.setError("Пожалуйста напиши что-нибудь");
-        } else if (imageUri == null) {
-            Toast.makeText(this, "Без фотки? Ну так же не интересно", Toast.LENGTH_SHORT).show();
-        } else {
-            mLoadingBar.setTitle("Твой пост добавляется пожалуйста потерпи немного)");
-            mLoadingBar.setCanceledOnTouchOutside(false);
-            mLoadingBar.show();
-
-            Date date = new Date();
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-            String strDate = formatter.format(date);
-
-            postImageRef.child(mUser.getUid() + strDate).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                    if (task.isSuccessful()) {
-                        postImageRef.child(mUser.getUid() + strDate).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                HashMap hashMap = new HashMap();
-                                hashMap.put("datePost", strDate);
-                                hashMap.put("postImageUrl", uri.toString());
-                                hashMap.put("postDesc", postDesc);
-                                hashMap.put("userProfileImageUrl", profileImageUrlV);
-                                hashMap.put("username", usernameV);
-                                PostRef.child(mUser.getUid() + strDate).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
-                                    @Override
-                                    public void onComplete(@NonNull Task task) {
-                                        if (task.isSuccessful()) {
-                                            mLoadingBar.dismiss();
-                                            Toast.makeText(MainActivity.this, "Пост добавлен)", Toast.LENGTH_SHORT).show();
-                                            addImagePost.setImageResource(R.drawable.ic_add_post_image);
-                                            inputPostDesc.setText("");
-                                        } else {
-                                            mLoadingBar.dismiss();
-                                            Toast.makeText(MainActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-                            }
-                        });
-                    } else {
-                        mLoadingBar.dismiss();
-                        Toast.makeText(MainActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-            });
-        }
-    }
+//    private void AddPost() {
+//        String postDesc = inputPostDesc.getText().toString();
+//        if (postDesc.isEmpty() || postDesc.length() < 1) {
+//            inputPostDesc.setError("Пожалуйста напиши что-нибудь");
+//        } else if (imageUri == null) {
+//            Toast.makeText(this, "Без фотки? Ну так же не интересно", Toast.LENGTH_SHORT).show();
+//        } else {
+//            mLoadingBar.setTitle("Твой пост добавляется пожалуйста потерпи немного)");
+//            mLoadingBar.setCanceledOnTouchOutside(false);
+//            mLoadingBar.show();
+//
+//            Date date = new Date();
+//            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+//            String strDate = formatter.format(date);
+//
+//            postImageRef.child(mUser.getUid() + strDate).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//                        postImageRef.child(mUser.getUid() + strDate).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Override
+//                            public void onSuccess(Uri uri) {
+//                                HashMap hashMap = new HashMap();
+//                                hashMap.put("datePost", strDate);
+//                                hashMap.put("postImageUrl", uri.toString());
+//                                hashMap.put("postDesc", postDesc);
+//                                hashMap.put("userProfileImageUrl", profileImageUrlV);
+//                                hashMap.put("username", usernameV);
+//                                PostRef.child(mUser.getUid() + strDate).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task task) {
+//                                        if (task.isSuccessful()) {
+//                                            mLoadingBar.dismiss();
+//                                            Toast.makeText(MainActivity.this, "Пост добавлен)", Toast.LENGTH_SHORT).show();
+//                                            addImagePost.setImageResource(R.drawable.ic_add_post_image);
+//                                            inputPostDesc.setText("");
+//                                        } else {
+//                                            mLoadingBar.dismiss();
+//                                            Toast.makeText(MainActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+//                                });
+//                            }
+//                        });
+//                    } else {
+//                        mLoadingBar.dismiss();
+//                        Toast.makeText(MainActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
+//
+//                    }
+//                }
+//            });
+//        }
+//    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (mUser == null) {
+        if (mAuth == null) {
             SendUserToLoginActivity();
         } else {
-            mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
+            mUserRef.child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
