@@ -35,6 +35,7 @@ public class ViewFriendActivity extends AppCompatActivity {
     TextView Username, address;
     Button btnPerform, btnDecline;
     String CurrentState = "nothing_happen";
+    String profession;
 
 
     @Override
@@ -220,8 +221,8 @@ public class ViewFriendActivity extends AppCompatActivity {
                         Toast.makeText(ViewFriendActivity.this, "You have canceled Friend Request", Toast.LENGTH_SHORT).show();
                         CurrentState = "nothing_happen";
                         btnPerform.setText("Send Friend Request");
-                        btnPerform.setBackground(getDrawable(R.drawable.btn_perform));
                         btnDecline.setVisibility(View.GONE);
+                        btnPerform.setBackground(getDrawable(R.drawable.btn_perform));
                     } else {
                         Toast.makeText(ViewFriendActivity.this, "" + task.getException().toString(), Toast.LENGTH_SHORT).show();
                     }
@@ -236,6 +237,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                         hashMap.put("status", "friend");
                         hashMap.put("username", username);
                         hashMap.put("profileImageUrl", profileImageUrl);
+                        hashMap.put("profession", profession);
                         friendRef.child(mUser.getUid()).child(userID).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener() {
                             @Override
                             public void onComplete(@NonNull Task task) {
@@ -257,8 +259,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                 }
             });
         }
-        if (CurrentState.equals("friend")) {
-            //
+        if (CurrentState.equals("friend")){
         }
     }
 
@@ -272,6 +273,7 @@ public class ViewFriendActivity extends AppCompatActivity {
                     username = snapshot.child("username").getValue().toString();
                     city = snapshot.child("city").getValue().toString();
                     country = snapshot.child("country").getValue().toString();
+                    profession = snapshot.child("profession").getValue().toString();
 
                     Picasso.get().load(profileImageUrl).into(profileImage);
                     Username.setText(username);
