@@ -16,7 +16,7 @@ public class FriendMyViewHolder extends RecyclerView.ViewHolder {
     public FriendMyViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        profileImageUrl=itemView.findViewById(R.id.profileImage);
+        profileImageUrl=itemView.findViewById(R.id.profileImage3);
         username=itemView.findViewById(R.id.username3);
         profession=itemView.findViewById(R.id.profession3);
 
