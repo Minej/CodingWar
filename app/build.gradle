@@ -8,6 +8,7 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
+        setProperty('archivesBaseName', "Coding Wars")
         applicationId "com.example.myapp5"
         minSdkVersion 22
         targetSdkVersion 30
