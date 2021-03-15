@@ -371,15 +371,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.home:
-                Toast.makeText(this, "Дом", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Главное", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.profile:
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                Toast.makeText(this, "Пока в разработке", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.friend:
-                startActivity(new Intent(MainActivity.this, FriendActivity.class));
                 startActivity(new Intent(MainActivity.this, FriendActivity.class));
                 break;
 
@@ -388,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.chat:
-                Toast.makeText(this, "Чат", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, ChatActivity.class));
                 break;
 
             case R.id.Logout:

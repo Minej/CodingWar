@@ -1,5 +1,6 @@
 package com.example.myapp5;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,13 +37,14 @@ public class ViewFriendActivity extends AppCompatActivity {
     Button btnPerform, btnDecline;
     String CurrentState = "nothing_happen";
     String profession;
+    String userID;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_friend);
-        String userID = getIntent().getStringExtra("userKey");
+         userID = getIntent().getStringExtra("userKey");
 
         mUserRef = FirebaseDatabase.getInstance().getReference().child("User").child(userID);
         requestRef = FirebaseDatabase.getInstance().getReference().child("Requests");
@@ -261,6 +263,9 @@ public class ViewFriendActivity extends AppCompatActivity {
         }
         if (CurrentState.equals("friend")){
         }
+            Intent intent=new Intent(ViewFriendActivity.this,ChatActivity.class);
+            intent.putExtra("OtherUserID",userID);
+            startActivity(intent);
     }
 
     private void LoadUser() {
