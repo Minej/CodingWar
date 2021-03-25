@@ -5,8 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChatActivity">
-    <include layout="@layout/app_bar_chat"
-        android:id="@+id/app_bar"/>
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar_chat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -29,12 +34,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Напиши что-то"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintEnd_toStartOf="@+id/btnSend"
             app:layout_constraintStart_toEndOf="@+id/ImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/btnSend"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/send"
