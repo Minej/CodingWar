@@ -387,7 +387,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.chat:
-                startActivity(new Intent(MainActivity.this, ChatActivity.class));
+                Toast.makeText(this, ")))", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.Logout:
