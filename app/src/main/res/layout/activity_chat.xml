@@ -19,23 +19,13 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-            android:id="@+id/ImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/ic_add_post_image"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/inputSMS"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Напиши что-то"
             app:layout_constraintEnd_toStartOf="@+id/btnSend"
-            app:layout_constraintStart_toEndOf="@+id/ImageView"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -51,6 +41,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
+        android:scrollbars="vertical"
         android:id="@+id/recyclerview"
         android:layout_height="0dp"
         android:background="@color/colorGray"
