@@ -42,7 +42,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    //firebase
+    //Firebase
     implementation "com.google.firebase:firebase-auth:19.3.0"
     implementation "com.google.firebase:firebase-core:17.3.0"
     implementation "com.google.firebase:firebase-storage:19.1.1"
@@ -52,20 +52,19 @@ dependencies {
     implementation "com.google.android.material:material:1.2.1"
 
     //Circle ImageView
-
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //Picasso
-
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     //Day and Night
-
     implementation 'com.github.Mahfa:DayNightSwitch:1.4'
-    compile 'com.github.Mahfa:DayNightSwitch:1.4'
 
     //Gif animation
-
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
+
+    //Notification
+    implementation 'com.android.volley:volley:1.2.0'
+
 
 }

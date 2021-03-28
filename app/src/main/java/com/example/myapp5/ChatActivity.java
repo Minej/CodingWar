@@ -15,6 +15,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.myapp5.Utills.Chat;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -29,7 +36,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -49,6 +60,8 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<Chat>options;
     FirebaseRecyclerAdapter<Chat, ChatMyViewHolder> adapter;
     String myProfileImageLink;
+    String URL="https://fcm.googleapis.com/fcm/send";
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +72,7 @@ public class ChatActivity extends AppCompatActivity {
         toolbar=findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
+        requestQueue= Volley.newRequestQueue(this);
         recyclerView=findViewById(R.id.recyclerview);
         inputSMS=findViewById(R.id.inputSMS);
         btnSend=findViewById(R.id.btnSend);
@@ -70,7 +84,7 @@ public class ChatActivity extends AppCompatActivity {
         smsRef= FirebaseDatabase.getInstance().getReference().child("Message");
         mAuth=FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
-        
+
         LoadOtherUser();
         LoadMyProfile();
 
@@ -159,6 +173,7 @@ public class ChatActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task task) {
                                 if (task.isSuccessful()){
+                                    sendNotification(sms);
                                     inputSMS.setText(null);
                                 }
 
@@ -168,6 +183,45 @@ public class ChatActivity extends AppCompatActivity {
 
                 }
             });
+        }
+    }
+
+    private void sendNotification(String sms) {
+        JSONObject jsonObject= new JSONObject();
+        try {
+            jsonObject.put("to", "/topics/"+OtherUserID);
+            JSONObject jsonObject1=new JSONObject();
+
+            jsonObject1.put("title","Message from"+OtherUsername);
+            jsonObject1.put("body", sms);
+
+            jsonObject.put("notification",jsonObject1);
+
+            JsonObjectRequest request=new JsonObjectRequest(Request.Method.POST,URL, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+                    Map<String, String>map=new HashMap<>();
+                    map.put("content-type", "application/json");
+                    map.put("authorization", "key=AAAAWxNhwwc:APA91bHYry3YxiL-mHGdH67amN-meede3hI_EcTxGKpV4AiNMo5mdWrmHfVV2xdLza4aNWaIKnGYauvuvGZxUo4k-Y-6VhOpxOxT6578JIyuJkkfvg91aLjQNyNEbV-XBJNZo91uLEED");
+                    return map;
+                }
+            };
+            requestQueue.add(request);
+
+
+        }catch (JSONException e){
+            e.printStackTrace();
         }
     }
 
