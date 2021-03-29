@@ -39,6 +39,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         PostRef = FirebaseDatabase.getInstance().getReference().child("Posts");
         LikeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
+
+        FirebaseMessaging.getInstance().subscribeToTopic(mUser.getUid());
 
         // Evil references
         evilPostRef = FirebaseDatabase.getInstance().getReference().child("TestRef").child("Posts");

@@ -65,6 +65,7 @@ dependencies {
 
     //Notification
     implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.google.firebase:firebase-messaging-directboot:20.2.0'
 
 
 }

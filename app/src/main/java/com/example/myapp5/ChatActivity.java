@@ -1,6 +1,7 @@
 package com.example.myapp5;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class ChatActivity extends AppCompatActivity {
     String myProfileImageLink;
     String URL="https://fcm.googleapis.com/fcm/send";
     RequestQueue requestQueue;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,8 @@ public class ChatActivity extends AppCompatActivity {
         LoadOtherUser();
         LoadMyProfile();
 
+
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,12 +102,15 @@ public class ChatActivity extends AppCompatActivity {
         LoadSMS();
     }
 
+
+
     private void LoadMyProfile() {
         mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     myProfileImageLink=snapshot.child("profileImage").getValue().toString();
+                    username=snapshot.child("username").getValue().toString();
 
                 }
             }
@@ -192,10 +199,16 @@ public class ChatActivity extends AppCompatActivity {
             jsonObject.put("to", "/topics/"+OtherUserID);
             JSONObject jsonObject1=new JSONObject();
 
-            jsonObject1.put("title","Message from"+OtherUsername);
+            jsonObject1.put("title","Message from"+username);
             jsonObject1.put("body", sms);
 
+            JSONObject jsonObject2=new JSONObject();
+            jsonObject2.put("userID", mUser.getUid());
+            jsonObject2.put("type", "sms");
+
+
             jsonObject.put("notification",jsonObject1);
+            jsonObject.put("data",jsonObject2);
 
             JsonObjectRequest request=new JsonObjectRequest(Request.Method.POST,URL, jsonObject, new Response.Listener<JSONObject>() {
                 @Override
