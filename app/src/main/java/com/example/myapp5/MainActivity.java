@@ -377,6 +377,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Главное", Toast.LENGTH_SHORT).show();
                 break;
 
+            case R.id.main:
+                startActivity(new Intent(MainActivity.this, Activity_Main.class));
+                break;
+
             case R.id.profile:
                 Toast.makeText(this, "Пока в разработке", Toast.LENGTH_SHORT).show();
                 break;

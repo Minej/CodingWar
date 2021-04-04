@@ -7,6 +7,9 @@
     <item android:id="@+id/home"
         android:title="Главное"
         android:icon="@drawable/ic_home"/>
+    <item android:id="@+id/main"
+            android:title="Занятия"
+            android:icon="@drawable/ic_main"/>
     <item android:id="@+id/profile"
             android:title="Профиль"
             android:icon="@drawable/ic_profile"/>
