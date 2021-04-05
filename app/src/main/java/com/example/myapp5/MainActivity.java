@@ -378,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.main:
-                startActivity(new Intent(MainActivity.this, Activity_Main.class));
+                startActivity(new Intent(MainActivity.this, ZadaniyaActivity.class));
                 break;
 
             case R.id.profile:
