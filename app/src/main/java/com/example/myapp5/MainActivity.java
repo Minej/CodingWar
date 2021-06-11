@@ -378,7 +378,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.main:
-                startActivity(new Intent(MainActivity.this, ZadaniyaActivity.class));
+                Toast.makeText(this, "Что-то", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.profile:
