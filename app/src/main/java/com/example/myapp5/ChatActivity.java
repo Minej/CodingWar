@@ -1,8 +1,8 @@
 package com.example.myapp5;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -102,8 +102,16 @@ public class ChatActivity extends AppCompatActivity {
         LoadSMS();
     }
 
-
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    
     private void LoadMyProfile() {
         mUserRef.child(mUser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
