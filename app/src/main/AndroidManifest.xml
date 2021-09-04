@@ -6,10 +6,18 @@
         android:allowBackup="true"
         android:icon="@drawable/logo1"
         android:label="@string/CodingWars"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp5">
-        <activity android:name=".ZadaniyaActivity"></activity>
+        <activity
+            android:name=".java_les"
+            android:exported="true" />
+        <activity
+            android:name=".Lesson_Activity"
+            android:exported="true" />
+        <activity
+            android:name="about_lesson.Lesson_Activity"
+            android:exported="true" />
         <activity android:name=".ChatUserActivity" />
         <activity android:name=".ChatActivity" />
         <activity android:name=".ImageViewActivity" />

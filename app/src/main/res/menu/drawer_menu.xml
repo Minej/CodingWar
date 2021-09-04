@@ -4,30 +4,37 @@
     <group android:id="@+id/first">
 
 
-    <item android:id="@+id/home"
-        android:title="Главное"
-        android:icon="@drawable/ic_home"/>
-    <item android:id="@+id/main"
-            android:title="Занятия"
-            android:icon="@drawable/ic_main"/>
-    <item android:id="@+id/profile"
-            android:title="Профиль"
-            android:icon="@drawable/ic_profile"/>
-    <item android:id="@+id/friend"
-            android:title="Друзья"
-            android:icon="@drawable/ic_friend"/>
-    <item android:id="@+id/find_friend"
-            android:title="Найти Друзей"
-            android:icon="@drawable/ic_find_friend"/>
-    <item android:id="@+id/chat"
-            android:title="Чат"
-            android:icon="@drawable/ic_chat"/>
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home"
+            android:title="Главное" />
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Профиль" />
+        <item
+            android:id="@+id/friend"
+            android:icon="@drawable/ic_friend"
+            android:title="Друзья" />
+        <item
+            android:id="@+id/find_friend"
+            android:icon="@drawable/ic_find_friend"
+            android:title="Найти Друзей" />
+        <item
+            android:id="@+id/chat"
+            android:icon="@drawable/ic_chat"
+            android:title="Чат" />
+        <item
+            android:id="@+id/lesson"
+            android:icon="@drawable/ic_lesson"
+            android:title="Уроки" />
 
     </group>
     <group android:id="@+id/second">
-        <item android:id="@+id/Logout"
-            android:title="Выход"
-            android:icon="@drawable/ic_logout"/>
+        <item
+            android:id="@+id/Logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Выход" />
     </group>
 
 

@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-      /*MY EVIL CREATE POST AHAHAHAH*/
+    /*MY EVIL CREATE POST AHAHAHAH*/
 
     private void ahahahaMyEvilCreatePost() {
         String postDesc = inputPostDesc.getText().toString();
@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 holder.postImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent= new Intent(MainActivity.this, ImageViewActivity.class);
+                        Intent intent = new Intent(MainActivity.this, ImageViewActivity.class);
                         intent.putExtra("url", model.getPostImageUrl());
                         startActivity(intent);
                     }
@@ -377,10 +377,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, "Главное", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.main:
-                startActivity(new Intent(MainActivity.this, ZadaniyaActivity.class));
-                break;
-
             case R.id.profile:
                 Toast.makeText(this, "Пока в разработке", Toast.LENGTH_SHORT).show();
                 break;
@@ -395,6 +391,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.chat:
                 startActivity(new Intent(MainActivity.this, ChatUserActivity.class));
+                break;
+
+            case R.id.lesson:
+                startActivity(new Intent(MainActivity.this, Lesson_Activity.class));
                 break;
 
             case R.id.Logout:
