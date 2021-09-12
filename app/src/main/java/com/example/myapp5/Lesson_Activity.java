@@ -24,7 +24,7 @@ public class Lesson_Activity extends AppCompatActivity {
 
         java = findViewById(R.id.java);
         python = findViewById(R.id.python);
-        JS = findViewById(R.id.JS);
+        JS = findViewById(R.id.js);
 
         anim_top = AnimationUtils.loadAnimation(this, R.anim.anim_top);
         anim_bottom = AnimationUtils.loadAnimation(this, R.anim.anim_bottom);
